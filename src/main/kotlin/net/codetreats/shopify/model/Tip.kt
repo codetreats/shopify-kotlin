@@ -6,5 +6,5 @@ data class Tip(
     @Json(name = "payment_method")
     val paymentMethod: String?,
     @Json(name = "payment_gateway")
-    val paymentGateway: String?
+    val paymentGateway: String?,
 )

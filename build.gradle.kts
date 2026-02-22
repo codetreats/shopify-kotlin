@@ -1,23 +1,24 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "2.2.21"
     `maven-publish`
     id("signing")
+    id("com.diffplug.spotless") version "8.2.1"
 }
 
 group = "net.codetreats"
-version = "0.0.1"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
+    localRepo()
 }
 
 dependencies {
-    api("org.apache.logging.log4j:log4j-api:2.24.1")
-    implementation("net.codetreats:kotlin-rest-client:3.0.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-    implementation("com.squareup.moshi:moshi-adapters:1.15.1")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    implementation("org.slf4j:slf4j-simple:2.0.9")
+    val moshi = "1.15.2"
+    api("net.codetreats:kotlin-rest-client:3.0.0")
+    api("org.apache.logging.log4j:log4j-api:2.25.3")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi")
+    implementation("com.squareup.moshi:moshi-adapters:$moshi")
 }
 
 tasks.test {
@@ -25,7 +26,7 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 signing {
@@ -69,15 +70,41 @@ publishing {
     }
 
     repositories {
-        maven {
-            this.name = "repo"
-            this.url = uri(project.findProperty("repo.url")?.toString() ?: "")
-            this.isAllowInsecureProtocol = true
-        }
+        localRepo()
     }
 }
 
 java {
     withSourcesJar()
     withJavadocJar()
+}
+
+fun RepositoryHandler.localRepo() =
+    maven {
+        this.name = "repo"
+        this.url = uri(project.findProperty("repo.url")?.toString() ?: "")
+        this.isAllowInsecureProtocol = true
+    }
+
+spotless {
+    kotlin {
+        target("src/**/*.kt")
+        ktlint("1.0.1")
+            .editorConfigOverride(
+                mapOf(
+                    "indent_size" to "4",
+                    "max_line_length" to "120",
+                    "ktlint_standard_no-wildcard-imports" to "disabled",
+                ),
+            )
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint("1.0.1")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
 }

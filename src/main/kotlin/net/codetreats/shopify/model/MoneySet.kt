@@ -6,5 +6,5 @@ data class MoneySet(
     @Json(name = "shop_money")
     val shopMoney: Money?,
     @Json(name = "presentment_money")
-    val presentmentMoney: Money?
+    val presentmentMoney: Money?,
 )

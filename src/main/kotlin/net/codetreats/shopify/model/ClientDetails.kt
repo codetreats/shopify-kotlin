@@ -14,5 +14,5 @@ data class ClientDetails(
     @Json(name = "session_hash")
     val sessionHash: String?,
     @Json(name = "user_agent")
-    val userAgent: String?
+    val userAgent: String?,
 )

@@ -38,5 +38,5 @@ data class Address(
     @Json(name = "latitude")
     val latitude: Double?,
     @Json(name = "longitude")
-    val longitude: Double?
+    val longitude: Double?,
 )

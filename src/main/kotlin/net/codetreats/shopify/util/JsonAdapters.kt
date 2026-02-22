@@ -11,12 +11,23 @@ annotation class JsonString
 class JsonStringDoubleAdapter {
     @FromJson
     @JsonString
-    fun fromJson(json: String): Double? {
+    fun fromJsonDouble(json: String): Double {
         return json.toDouble()
     }
 
+    @FromJson
+    @JsonString
+    fun fromJsonNullableDouble(json: String?): Double? {
+        return json?.toDoubleOrNull()
+    }
+
     @ToJson
-    fun toJson(@JsonString value: Double?): String? {
+    fun toJsonDouble(@JsonString value: Double): String {
+        return value.toString()
+    }
+
+    @ToJson
+    fun toJsonNullableDouble(@JsonString value: Double?): String? {
         return value?.toString()
     }
 }
@@ -24,12 +35,23 @@ class JsonStringDoubleAdapter {
 class JsonStringIntAdapter {
     @FromJson
     @JsonString
-    fun fromJson(json: String): Int? {
+    fun fromJsonInt(json: String): Int {
         return json.toInt()
     }
 
+    @FromJson
+    @JsonString
+    fun fromJsonNullableInt(json: String?): Int? {
+        return json?.toIntOrNull()
+    }
+
     @ToJson
-    fun toJson(@JsonString value: Int?): String? {
+    fun toJsonInt(@JsonString value: Int): String {
+        return value.toString()
+    }
+
+    @ToJson
+    fun toJsonNullableInt(@JsonString value: Int?): String? {
         return value?.toString()
     }
 }
@@ -37,12 +59,23 @@ class JsonStringIntAdapter {
 class JsonStringLongAdapter {
     @FromJson
     @JsonString
-    fun fromJson(json: String): Long? {
+    fun fromJsonLong(json: String): Long {
         return json.toLong()
     }
 
+    @FromJson
+    @JsonString
+    fun fromJsonNullableLong(json: String?): Long? {
+        return json?.toLongOrNull()
+    }
+
     @ToJson
-    fun toJson(@JsonString value: Long?): String? {
+    fun toJsonLong(@JsonString value: Long): String {
+        return value.toString()
+    }
+
+    @ToJson
+    fun toJsonNullableLong(@JsonString value: Long?): String? {
         return value?.toString()
     }
 }

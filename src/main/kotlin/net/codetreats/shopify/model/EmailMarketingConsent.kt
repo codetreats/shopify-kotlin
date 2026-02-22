@@ -9,5 +9,5 @@ data class EmailMarketingConsent(
     @Json(name = "opt_in_level")
     val optInLevel: String?,
     @Json(name = "consent_updated_at")
-    val consentUpdatedAt: LocalDateTime?
+    val consentUpdatedAt: LocalDateTime?,
 )

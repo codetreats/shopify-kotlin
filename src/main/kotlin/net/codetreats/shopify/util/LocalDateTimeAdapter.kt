@@ -12,8 +12,8 @@ import java.time.format.DateTimeFormatter
 class LocalDateTimeAdapter {
     @ToJson
     fun toJson(writer: JsonWriter, value: LocalDateTime?) {
-        value?.let { 
-             writer.value(it.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
+        value?.let {
+            writer.value(it.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
         }
     }
 

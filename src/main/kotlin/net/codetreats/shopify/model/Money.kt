@@ -8,5 +8,5 @@ data class Money(
     @JsonString
     val amount: Double?,
     @Json(name = "currency_code")
-    val currencyCode: String
+    val currencyCode: String,
 )

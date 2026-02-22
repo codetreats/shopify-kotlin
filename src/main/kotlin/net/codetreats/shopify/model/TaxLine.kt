@@ -14,5 +14,5 @@ data class TaxLine(
     @Json(name = "price_set")
     val priceSet: MoneySet?,
     @Json(name = "channel_liable")
-    val channelLiable: Boolean?
+    val channelLiable: Boolean?,
 )
