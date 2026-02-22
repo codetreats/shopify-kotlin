@@ -1,11 +1,11 @@
 package net.codetreats.shopify.api
 
 import net.codetreats.shopify.ShopifyClient
+import net.codetreats.shopify.ShopifyListResponse
 import net.codetreats.shopify.model.FinancialStatus
 import net.codetreats.shopify.model.FulfillmentStatus
 import net.codetreats.shopify.model.Order
 import net.codetreats.shopify.model.OrderStatus
-import net.codetreats.shopify.model.ShopifyListResponse
 import java.time.LocalDateTime
 
 class OrderApi(private val shopifyClient: ShopifyClient) {

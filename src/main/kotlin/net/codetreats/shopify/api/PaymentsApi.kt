@@ -1,7 +1,7 @@
 package net.codetreats.shopify.api
 
 import net.codetreats.shopify.ShopifyClient
-import net.codetreats.shopify.model.ShopifyListResponse
+import net.codetreats.shopify.ShopifyListResponse
 import net.codetreats.shopify.model.ShopifyPaymentsBalance
 import net.codetreats.shopify.model.ShopifyPaymentsPayout
 import net.codetreats.shopify.model.ShopifyPaymentsTransaction

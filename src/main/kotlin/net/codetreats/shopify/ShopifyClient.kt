@@ -7,7 +7,6 @@ import com.squareup.moshi.adapters.EnumJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import net.codetreats.rest.RestClient
 import net.codetreats.shopify.model.FinancialStatus
-import net.codetreats.shopify.model.ShopifyListResponse
 import net.codetreats.shopify.util.*
 import org.apache.logging.log4j.Logger
 import kotlin.math.min
