@@ -1,25 +1,26 @@
 package net.codetreats.shopify.api
 
+import java.time.LocalDateTime
 import net.codetreats.shopify.ShopifyClient
 import net.codetreats.shopify.ShopifyListResponse
 import net.codetreats.shopify.model.FinancialStatus
 import net.codetreats.shopify.model.FulfillmentStatus
 import net.codetreats.shopify.model.Order
 import net.codetreats.shopify.model.OrderStatus
-import java.time.LocalDateTime
+import net.codetreats.shopify.model.update.OrderUpdate
 
 class OrderApi(private val shopifyClient: ShopifyClient) {
     fun get(
-        limit: Int? = null,
-        status: OrderStatus? = null,
-        financialStatus: FinancialStatus? = null,
-        fulfillmentStatus: FulfillmentStatus? = null,
-        sinceId: Long? = null,
-        createdAtMin: LocalDateTime? = null,
-        createdAtMax: LocalDateTime? = null,
-        updatedAtMin: LocalDateTime? = null,
-        updatedAtMax: LocalDateTime? = null,
-        fields: String? = null,
+            limit: Int? = null,
+            status: OrderStatus? = null,
+            financialStatus: FinancialStatus? = null,
+            fulfillmentStatus: FulfillmentStatus? = null,
+            sinceId: Long? = null,
+            createdAtMin: LocalDateTime? = null,
+            createdAtMax: LocalDateTime? = null,
+            updatedAtMin: LocalDateTime? = null,
+            updatedAtMax: LocalDateTime? = null,
+            fields: String? = null,
     ): ShopifyListResponse<Order> {
         val params = mutableMapOf<String, String?>()
         params["limit"] = limit?.toString()
@@ -38,5 +39,13 @@ class OrderApi(private val shopifyClient: ShopifyClient) {
 
     fun getElement(id: Long): Order {
         return shopifyClient.getElement<Order>("order", "/orders/$id.json")
+    }
+
+    fun update(orderId: Long, orderUpdate: OrderUpdate): Order {
+        return shopifyClient.putElement<Order, OrderUpdate>(
+                "order",
+                "/orders/${orderId}.json",
+                orderUpdate,
+        )
     }
 }
