@@ -7,7 +7,6 @@ import net.codetreats.shopify.model.FinancialStatus
 import net.codetreats.shopify.model.FulfillmentStatus
 import net.codetreats.shopify.model.Order
 import net.codetreats.shopify.model.OrderStatus
-import net.codetreats.shopify.model.update.OrderUpdate
 
 class OrderApi(private val shopifyClient: ShopifyClient) {
     fun get(
@@ -39,13 +38,5 @@ class OrderApi(private val shopifyClient: ShopifyClient) {
 
     fun getElement(id: Long): Order {
         return shopifyClient.getElement<Order>("order", "/orders/$id.json")
-    }
-
-    fun update(orderId: Long, orderUpdate: OrderUpdate): Order {
-        return shopifyClient.putElement<Order, OrderUpdate>(
-                "order",
-                "/orders/${orderId}.json",
-                orderUpdate,
-        )
     }
 }
