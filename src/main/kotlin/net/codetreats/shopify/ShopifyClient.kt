@@ -45,7 +45,9 @@ class ShopifyClient(
                 headers: Map<String, String> = emptyMap(),
         ): T {
                 logger?.info("GET $subUrl${params.asUrl()} (${headers.asList()})")
-                val message = restClient.get(subUrl, params, headers).message
+                val response = restClient.get(subUrl, params, headers)
+                logger?.trace("Response-Headers: {}", response.headers)
+                val message = response.message
                 logger?.debug("Message: $message")
 
                 // Create adapter for the wrapper map
@@ -86,6 +88,7 @@ class ShopifyClient(
                 logger?.info("PUT $subUrl${params.filterNotNull().asUrl()} (${headers.asList()})")
                 logger?.info("Body: $requestJson")
                 val response = restClient.put(subUrl, params.filterNotNull(), headers, requestJson)
+                logger?.trace("Response-Headers: {}", response.headers)
                 val message = response.message
                 logger?.info("Message: $message")
 
@@ -126,6 +129,7 @@ class ShopifyClient(
                 logger?.info("POST $subUrl${params.filterNotNull().asUrl()} (${headers.asList()})")
                 logger?.info("Body: $requestJson")
                 val response = restClient.post(subUrl, params.filterNotNull(), headers, requestJson)
+                logger?.trace("Response-Headers: {}", response.headers)
                 val message = response.message
                 logger?.info("Message: $message")
 
